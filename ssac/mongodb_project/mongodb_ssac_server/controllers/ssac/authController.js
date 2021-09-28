@@ -1,15 +1,16 @@
-// 회원가입
+const user = require("../../models/user");
+const jwtModule = require("../../modules/jwtModule");
 
 const authController = {
   signUp: async (req, res) => {
     const { userId, name, password } = req.body;
 
     try {
-      const result = await users.findOne({ userId }); // 아이디 체크
+      const result = await user.findOne({ userId }); // 아이디 체크
 
       if (!result) {
         // 중복된 아이디가 없을 경우
-        const userModel = new users({
+        const userModel = new user({
           userId,
           name,
           password,
@@ -25,6 +26,7 @@ const authController = {
         });
       }
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "DB 서버 에러",
         error: error,
@@ -36,11 +38,21 @@ const authController = {
     const { userId, password } = req.body;
 
     try {
-      const result = await users.findOne({ userId, password });
+      const result = await user.findOne({ userId, password });
       if (result) {
         // 로그인 성공 > 무언가 담긴 객체
+
+        const payload = {
+          userId: result.userId,
+          name: result.name,
+        };
+
+        const token = jwtModule.create(payload);
+        console.log(token);
+
         res.status(200).json({
           message: "로그인 성공",
+          accessToken: token,
           data: result,
         });
       } else {
@@ -51,6 +63,7 @@ const authController = {
         });
       }
     } catch (err) {
+      console.log(err);
       res.status(500).json({
         message: "DB 서버 에러",
         error: err,

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const BoarderBox = styled.div`
+const BorderBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: 50rem;
   padding: 3rem;
 `;
 
-export default BoarderBox;
+export default BorderBox;

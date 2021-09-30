@@ -78,10 +78,9 @@ const NavProfileImg = styled.img`
   width: 3.4rem;
   height: 3.4rem;
   margin-left: 3rem;
-  border-radius: 1.7rem;
 `;
 
-function NavbarComponent() {
+function NavbarComponent({ isLoggined }) {
   return (
     <>
       <NavbarWrap>
@@ -89,8 +88,17 @@ function NavbarComponent() {
           <NavFrontWrap>
             <NavLogo>Sssac</NavLogo>
             <NavLinkWrap>
-              <NavStyledLink to="/signin">로그인</NavStyledLink>
-              <NavStyledLink to="/signup">회원가입</NavStyledLink>
+              {!isLoggined ? (
+                <>
+                  <NavStyledLink to="/signin">로그인</NavStyledLink>
+                  <NavStyledLink to="/signup">회원가입</NavStyledLink>
+                </>
+              ) : (
+                <>
+                  <NavStyledLink to="/write">글쓰기</NavStyledLink>
+                  <NavStyledLink to="/signout">로그아웃</NavStyledLink>
+                </>
+              )}
             </NavLinkWrap>
           </NavFrontWrap>
           <NavProfileWrap>
@@ -107,7 +115,7 @@ function NavbarComponent() {
             </NavIconsWrap>
             <NavProfileImg
               src={
-                "https://k.kakaocdn.net/dn/c2Ywnq/btqxC6B4Q6H/5ejBCvk2rdaisPRdkJxGs0/m1.jpg?w=200&h=200"
+                "https://careerly.co.kr/_next/static/images/img_profile-dummy-9e28d259cbf9e126af9c467a4bf0884f.png"
               }
             />
           </NavProfileWrap>

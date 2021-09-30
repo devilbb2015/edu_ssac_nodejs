@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import BoarderBox from "../common/box/BoarderBox";
-import RoundedButton from "../common/button/RoundedButtion";
+import BorderBox from "../common/box/BorderBox";
+import RoundedButton from "../common/button/RoundedButton";
 import RoundedInput from "../common/input/RoundedInput";
 import InputLable from "../common/text/InputLable";
 import InputTitle from "../common/text/InputTitle";
@@ -16,22 +16,29 @@ const InputWrap = styled.div`
   }
 `;
 
-function SignInComponent() {
+function SignInComponent({ onChangeInput, userInfo, onSubmit }) {
+  const { userId, password } = userInfo;
+
   return (
-    <BoarderBox>
+    <BorderBox>
       <InputTitle>로그인</InputTitle>
       <FormWrap>
         <InputWrap>
           <InputLable>유저 아이디</InputLable>
-          <RoundedInput />
+          <RoundedInput name="userId" value={userId} onChange={onChangeInput} />
         </InputWrap>
         <InputWrap>
           <InputLable>비밀 번호</InputLable>
-          <RoundedInput />
+          <RoundedInput
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChangeInput}
+          />
         </InputWrap>
         <RoundedButton>로그인</RoundedButton>
       </FormWrap>
-    </BoarderBox>
+    </BorderBox>
   );
 }
 

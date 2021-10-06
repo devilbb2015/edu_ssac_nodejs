@@ -73,6 +73,10 @@ function NavbarContainer({ isLoggined, setIsLoggined }) {
     history.push("/");
   };
 
+  const onClickHome = () => {
+    history.push("/"); // 메인페이지로 이동
+  };
+
   return (
     <NavbarComponent
       onClickAutoComplete={onClickAutoComplete}
@@ -83,6 +87,7 @@ function NavbarContainer({ isLoggined, setIsLoggined }) {
       searchInfo={searchInfo}
       isLoggined={isLoggined}
       onClickSignout={onClickSignout}
+      onClickHome={onClickHome}
     />
   );
 }

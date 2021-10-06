@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import WriteComponent from "../../components/write/WriteComponent";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const baseURL = "http://localhost:3000";
 
 function WriteContainer() {
+  const history = useHistory();
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -41,6 +44,7 @@ function WriteContainer() {
 
       if (response.status === 200) {
         console.log(response.data);
+        history.push("/");
       }
     } catch (error) {
       console.log(error);

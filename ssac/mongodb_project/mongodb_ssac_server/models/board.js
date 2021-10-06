@@ -22,14 +22,8 @@ boardSchema.statics.checkAuth = async function (params) {
       return -1;
     }
     return 1;
-    // 비교하고자 하는 유저의 _id
-    //return res.status(409).json({ message: "접근 권한이 없습니다." });
   } catch (error) {
-    console.log(error);
     return -2;
-    // res.status(500).json({
-    //   message: "DB 서버 에러",
-    // });
   }
 };
 

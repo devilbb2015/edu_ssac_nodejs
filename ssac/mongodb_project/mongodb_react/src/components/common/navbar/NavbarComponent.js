@@ -36,6 +36,8 @@ const NavFrontWrap = styled.div`
 const NavLogo = styled.div`
   font-size: 2rem;
   font-weight: bolder;
+  cursor: pointer;
+  user-select: none; // 드래그 안되게 설정
 `;
 
 const NavLinkWrap = styled.div`
@@ -70,7 +72,6 @@ const NavStyledIcon = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-
   & + & {
     margin-left: 1rem;
   }
@@ -83,7 +84,7 @@ const NavProfileImg = styled.img`
 `;
 
 const NavSignout = styled.div`
-  font-size: 1.5rem
+  font-size: 1.5rem;
   font-weight: normal;
   text-decoration: none;
   color: #000000;
@@ -103,7 +104,6 @@ const NavSearchInput = styled.input`
   flex: 1;
   border: none;
   width: 13rem;
-
   &:focus {
     outline: none;
   }
@@ -116,7 +116,7 @@ const SearchInputWrap = styled.div`
 
 const SearchBoard = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 15rem;
   position: absolute;
   top: 3.5rem;
   box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
@@ -127,14 +127,13 @@ const SearchBoard = styled.div`
 const SearchItemWrap = styled.div`
   padding: 1rem;
   cursor: pointer;
-
   & + & {
     border-top: 1px solid #dedede;
   }
 `;
 
 const SearchItemTitle = styled.div`
-  font-size = 1.3rem;
+  font-size: 1.3rem;
   font-weight: normal;
 `;
 
@@ -146,13 +145,14 @@ function NavbarComponent({
   searchState,
   searchData,
   onClickAutoComplete,
+  onClickHome,
 }) {
   return (
     <>
       <NavbarWrap>
         <NavContainer>
           <NavFrontWrap>
-            <NavLogo>ssac</NavLogo>
+            <NavLogo onClick={onClickHome}>Ssac</NavLogo>
             <NavLinkWrap>
               {!isLoggined ? (
                 <>
@@ -172,8 +172,8 @@ function NavbarComponent({
               <SearchInputWrap>
                 <NavSearchRoundBox>
                   <NavSearchInput
-                    name="searchInfo"
-                    defultvalue={searchInfo.search}
+                    name="search"
+                    value={searchInfo.search}
                     onChange={onChangeInput}
                   />
                   <NavStyledIcon>

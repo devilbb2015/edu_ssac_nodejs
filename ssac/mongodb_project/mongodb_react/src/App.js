@@ -6,6 +6,7 @@ import Signin from "./pages/SignIn";
 import Signup from "./pages/SignUp";
 import { useEffect, useState } from "react";
 import Write from "./pages/Write";
+import Detail from "./pages/Detail";
 
 function App() {
   const [isLoggined, setIsLoggined] = useState(false);
@@ -32,6 +33,7 @@ function App() {
       />
       <Route path="/signup" exact={true} component={Signup} />
       <Route path="/write" exact={true} component={Write} />
+      <Route path="/post/:postId" exact={true} component={Detail} />
     </>
   );
 }

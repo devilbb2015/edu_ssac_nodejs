@@ -36,7 +36,7 @@ function SignInComponent({ onChangeInput, userInfo, onSubmit }) {
             onChange={onChangeInput}
           />
         </InputWrap>
-        <RoundedButton>로그인</RoundedButton>
+        <RoundedButton onClick={onSubmit}>로그인</RoundedButton>
       </FormWrap>
     </BorderBox>
   );

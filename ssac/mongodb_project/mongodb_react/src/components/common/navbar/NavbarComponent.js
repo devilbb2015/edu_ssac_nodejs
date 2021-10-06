@@ -69,6 +69,8 @@ const NavStyledIcon = styled.div`
   font-size: 2.5rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
+
   & + & {
     margin-left: 1rem;
   }
@@ -80,13 +82,77 @@ const NavProfileImg = styled.img`
   margin-left: 3rem;
 `;
 
-function NavbarComponent({ isLoggined }) {
+const NavSignout = styled.div`
+  font-size: 1.5rem
+  font-weight: normal;
+  text-decoration: none;
+  color: #000000;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+const NavSearchRoundBox = styled.div`
+  border: 1px solid black;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+`;
+
+const NavSearchInput = styled.input`
+  flex: 1;
+  border: none;
+  width: 13rem;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const SearchInputWrap = styled.div`
+  position: relative;
+  margin-right: 1rem;
+`;
+
+const SearchBoard = styled.div`
+  width: 100%;
+  height: 30rem;
+  position: absolute;
+  top: 3.5rem;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #dedede;
+  background: #ffffff;
+`;
+
+const SearchItemWrap = styled.div`
+  padding: 1rem;
+  cursor: pointer;
+
+  & + & {
+    border-top: 1px solid #dedede;
+  }
+`;
+
+const SearchItemTitle = styled.div`
+  font-size = 1.3rem;
+  font-weight: normal;
+`;
+
+function NavbarComponent({
+  isLoggined,
+  onClickSignout,
+  onChangeInput,
+  searchInfo,
+  searchState,
+  searchData,
+  onClickAutoComplete,
+}) {
   return (
     <>
       <NavbarWrap>
         <NavContainer>
           <NavFrontWrap>
-            <NavLogo>Sssac</NavLogo>
+            <NavLogo>ssac</NavLogo>
             <NavLinkWrap>
               {!isLoggined ? (
                 <>
@@ -96,16 +162,44 @@ function NavbarComponent({ isLoggined }) {
               ) : (
                 <>
                   <NavStyledLink to="/write">글쓰기</NavStyledLink>
-                  <NavStyledLink to="/signout">로그아웃</NavStyledLink>
+                  <NavSignout onClick={onClickSignout}>로그아웃</NavSignout>
                 </>
               )}
             </NavLinkWrap>
           </NavFrontWrap>
           <NavProfileWrap>
             <NavIconsWrap>
-              <NavStyledIcon>
-                <AiOutlineSearch />
-              </NavStyledIcon>
+              <SearchInputWrap>
+                <NavSearchRoundBox>
+                  <NavSearchInput
+                    name="searchInfo"
+                    defultvalue={searchInfo.search}
+                    onChange={onChangeInput}
+                  />
+                  <NavStyledIcon>
+                    <AiOutlineSearch />
+                  </NavStyledIcon>
+                </NavSearchRoundBox>
+                {searchState ? (
+                  <>
+                    <SearchBoard>
+                      {searchData.map((item, idx) => (
+                        <SearchItemWrap
+                          key={idx}
+                          onClick={() => onClickAutoComplete(item.title)}
+                        >
+                          <SearchItemTitle
+                            dangerouslySetInnerHTML={{ __html: item.title }}
+                          ></SearchItemTitle>
+                        </SearchItemWrap>
+                      ))}
+                    </SearchBoard>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </SearchInputWrap>
+
               <NavStyledIcon>
                 <AiOutlineComment />
               </NavStyledIcon>

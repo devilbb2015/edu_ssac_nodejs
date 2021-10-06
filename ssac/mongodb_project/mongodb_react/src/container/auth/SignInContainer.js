@@ -5,7 +5,7 @@ import SignInComponent from "../../components/auth/SignInComponent";
 
 const baseURL = "http://localhost:3000";
 
-function SignInContainer() {
+function SignInContainer({ setIsLoggined }) {
   const history = useHistory();
   const [userInfo, setUserInfo] = useState({
     userId: "",
@@ -33,6 +33,7 @@ function SignInContainer() {
         console.log("로그인 성공");
         const accessToken = result.data.accessToken;
         localStorage.setItem("accessToken", accessToken);
+        setIsLoggined(true);
         history.push("/");
       }
     } catch (error) {

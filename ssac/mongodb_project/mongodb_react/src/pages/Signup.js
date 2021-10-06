@@ -1,8 +1,8 @@
 import React from "react";
 import FullCenterContainer from "../components/common/container/FullCenterContainer";
-import SignUpContainer from "../container/auth/SignupContainer";
+import SignUpContainer from "../container/auth/SignUpContainer";
 
-function Signup() {
+function SignUp() {
   return (
     <>
       <FullCenterContainer>
@@ -12,4 +12,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;

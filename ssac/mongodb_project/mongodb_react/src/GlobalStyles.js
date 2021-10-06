@@ -6,6 +6,10 @@ ${reset};
 html {
   font-size: 10px;
 }
+em {
+  font-weight: bolder;
+  color: orange
+}
 `;
 
 export default GlobalStyles;

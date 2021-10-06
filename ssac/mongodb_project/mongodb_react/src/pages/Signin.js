@@ -2,14 +2,14 @@ import React from "react";
 import FullCenterContainer from "../components/common/container/FullCenterContainer";
 import SignInContainer from "../container/auth/SignInContainer";
 
-function Signin() {
+function SignIn(setIsLoggined) {
   return (
     <>
       <FullCenterContainer>
-        <SignInContainer />
+        <SignInContainer setIsLoggined={setIsLoggined} />
       </FullCenterContainer>
     </>
   );
 }
 
-export default Signin;
+export default SignIn;

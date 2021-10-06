@@ -34,6 +34,8 @@ boardSchema.statics.checkAuth = async function (params) {
 };
 
 // this => document or data instance
-boardSchema.methods.checkMe = function () {};
+boardSchema.methods.checkMe = function () {
+  this.title;
+};
 
 module.exports = mongoose.model("board", boardSchema);

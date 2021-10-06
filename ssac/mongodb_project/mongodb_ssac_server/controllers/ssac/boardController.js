@@ -7,7 +7,7 @@ const boardController = {
   createBoard: async (req, res) => {
     const userInfo = req.userInfo;
 
-    const { title, content, boardPw, writer } = req.body;
+    const { title, content, boardPw } = req.body;
 
     const boardModel = new board({
       title,

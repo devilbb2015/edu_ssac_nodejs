@@ -8,20 +8,24 @@ const baseURL = "http://localhost:3000";
 function PostsListContainer() {
   const history = useHistory();
   let [postsList, setPostsList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // axios 통신 - async await 사용
     async function getData() {
-      // axios 통신 - async await 사용
+      setLoading(true);
       try {
         const response = await axios({
           method: "GET",
           url: `${baseURL}/ssac/board`,
         });
+
         console.log(response);
         if (response.status === 200) {
           const result = response.data.data;
           // console.log(result);
           setPostsList(result);
+          setLoading(false);
         } else {
         }
       } catch (error) {
@@ -52,6 +56,7 @@ function PostsListContainer() {
   return (
     <>
       <PostsListComponent
+        loading={loading}
         onClickPost={onClickPost}
         postsList={postsList}
       ></PostsListComponent>

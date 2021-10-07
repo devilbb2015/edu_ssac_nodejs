@@ -2,8 +2,25 @@ const user = require("../../models/user");
 const jwtModule = require("../../modules/jwtModule");
 
 const authController = {
+  getProfile: (req, res) => {
+    const userInfo = req.userInfo;
+
+    if (userInfo) {
+      // 있을 때
+      res.status(200).json({
+        message: "프로필 조회 성공",
+        data: userInfo,
+      });
+    } else {
+      // 없을 때
+      res.status(400).json({
+        message: "프로필 조회 실패",
+      });
+    }
+  },
+
   signUp: async (req, res) => {
-    const { userId, name, password } = req.body;
+    const { name, userId, password } = req.body;
 
     try {
       const result = await user.findOne({ userId }); // 아이디 체크
@@ -11,11 +28,11 @@ const authController = {
       if (!result) {
         // 중복된 아이디가 없을 경우
         const userModel = new user({
-          userId,
           name,
+          userId,
           password,
         });
-        const savedUser = await userModel.save();
+        await userModel.save();
         res.status(200).json({
           message: "회원가입 성공",
         });
@@ -36,6 +53,7 @@ const authController = {
 
   signIn: async (req, res) => {
     const { userId, password } = req.body;
+    console.log(req.body);
 
     try {
       const result = await user.findOne({ userId, password });
@@ -53,20 +71,17 @@ const authController = {
         res.status(200).json({
           message: "로그인 성공",
           accessToken: token,
-          data: result,
         });
       } else {
         // 로그인 실패 > null
         res.status(409).json({
           message: "로그인 실패",
-          error: err,
         });
       }
     } catch (err) {
       console.log(err);
       res.status(500).json({
         message: "DB 서버 에러",
-        error: err,
       });
     }
   },

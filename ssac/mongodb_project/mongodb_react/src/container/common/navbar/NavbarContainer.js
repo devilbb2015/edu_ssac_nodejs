@@ -5,7 +5,7 @@ import axios from "axios";
 
 const baseURL = "http://localhost:3000";
 
-function NavbarContainer({ isLoggined, setIsLoggined }) {
+function NavbarContainer({ isLoggined, setIsLoggined, profile }) {
   const history = useHistory();
 
   const [searchState, setSearchState] = useState(false);
@@ -79,6 +79,7 @@ function NavbarContainer({ isLoggined, setIsLoggined }) {
 
   return (
     <NavbarComponent
+      profile={profile}
       onClickAutoComplete={onClickAutoComplete}
       searchData={searchData}
       searchState={searchState}

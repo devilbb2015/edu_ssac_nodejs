@@ -29,7 +29,7 @@ function SignInContainer({ setIsLoggined }) {
       });
       if (result.status === 200) {
         // data
-        console.log(result.data);
+        // console.log(result.data);
         console.log("로그인 성공");
         const accessToken = result.data.accessToken;
         localStorage.setItem("accessToken", accessToken);
@@ -38,9 +38,8 @@ function SignInContainer({ setIsLoggined }) {
       }
     } catch (error) {
       const errorStatus = error.response.status;
-      if (errorStatus === 400) {
-        console.log(error);
-        alert("등록된 아이디가 없습니다.");
+      if (errorStatus === 409) {
+        alert("중복된 아이디가 존재합니다.");
       } else {
         console.log(error);
         alert("서버 에러가 발생했습니다.");

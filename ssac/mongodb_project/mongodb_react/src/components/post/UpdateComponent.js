@@ -7,7 +7,6 @@ import RoundedButton from "../common/button/RoundedButton";
 
 const WriteWrap = styled.div`
   width: 80rem;
-  margin-top: 7rem;
 `;
 
 const TitleInput = styled.input`
@@ -43,7 +42,7 @@ const StyledCancelButton = styled(RoundedButton)`
   margin-right: 1rem;
 `;
 
-function WriteComponent({
+function UpdateComponent({
   onChangeBody,
   body,
   title,
@@ -96,4 +95,4 @@ function WriteComponent({
   );
 }
 
-export default WriteComponent;
+export default UpdateComponent;

@@ -45,7 +45,7 @@ const ItemContent = styled.div`
 function PostItemComponent({ post, onClickPost }) {
   const { title, content, writer, writeTime, _id } = post; // 비구조화 할당
   const formatDate = dayjs(writeTime).format("YYYY-MM-DD / hh:mm");
-  console.log(writer);
+  //console.log(writer);
 
   // const time1 = dayjs("2021-10-6");
   // const time2 = dayjs("2021-10-4");

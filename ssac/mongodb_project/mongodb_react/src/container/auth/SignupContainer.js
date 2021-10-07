@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import SignUpComponent from "../../components/auth/SignUpComponent";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const baseURL = "http://localhost:3000";
 
 function SignUpContainer() {
+  const history = useHistory();
   const [userInfo, setUserInfo] = useState({
     userId: "",
     name: "",
@@ -30,6 +32,7 @@ function SignUpContainer() {
         // data
         console.log(result.data);
         console.log("회원가입 성공");
+        history.push("/");
       }
     } catch (error) {
       const errorStatus = error.response.status;
